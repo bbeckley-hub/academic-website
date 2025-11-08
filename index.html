@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beckley Brown | Bioinformatics Researcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+        }
+        
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: opacity 0.3s;
+        }
+        
+        .contact-info a:hover {
+            opacity: 0.8;
+        }
+        
+        nav {
+            background-color: var(--dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            padding: 1rem 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 0.5rem auto;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 0.5rem;
+        }
+        
+        .research-interests {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .interest-item {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--secondary);
+            border-radius: 50%;
+            top: 15px;
+            right: -10px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        .publication {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light);
+        }
+        
+        .publication:last-child {
+            border-bottom: none;
+        }
+        
+        .publication-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .publication-authors {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .publication-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-category {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 6px;
+        }
+        
+        .skill-list {
+            list-style-type: none;
+            margin-top: 1rem;
+        }
+        
+        .skill-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .membership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .membership-item {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .membership-item i {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .interests-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .interest-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .interest-card i {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--secondary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .timeline-item:nth-child(even)::after {
+                left: 21px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .research-interests,
+            .membership-grid,
+            .interests-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="profile-img">
+                <img src="-5814286156072864251_121.jpg" alt="Beckley Brown">
+            </div>
+            <div class="header-content">
+                <h1>Beckley Brown</h1>
+                <p>BSc Biochemistry | Bioinformatics Researcher | Genomic Epidemiologist</p>
+                <div class="contact-info">
+                    <a href="mailto:brownbeckley94@gmail.com"><i class="fas fa-envelope"></i> brownbeckley94@gmail.com</a>
+                    <a href="tel:+233532694328"><i class="fas fa-phone"></i> +233 532 694 328</a>
+                    <a href="https://www.linkedin.com/in/brown-beckley-190315319/"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://github.com/bbeckley-hub"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container nav-container">
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#leadership">Leadership</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="card">
+                <p>I am a highly motivated and detail-oriented BSc Biochemistry graduate with a strong foundation in molecular biology and bioinformatics. My research focuses on applying data-driven computational approaches to address critical biomedical challenges, particularly in the areas of antimicrobial resistance, molecular oncology, and genomic epidemiology.</p>
+                
+                <p>My work integrates laboratory expertise with advanced bioinformatics to study pathogen genomics, resistance mechanisms, and microbial evolution. I have developed specialized computational tools like StaphScope and EcoliTyper that streamline genomic analysis and provide accessible solutions for bacterial genotyping and surveillance. These tools address the bioinformatics barrier in genomic epidemiology by offering user-friendly, efficient workflows for comprehensive pathogen characterization.</p>
+                
+                <p>My research interests span genomic epidemiology of pathogens, antimicrobial resistance mechanisms, viral genomics, molecular oncology and biomarker discovery, plant and soil microbiomes, systems biology and multi-omics integration, and bioinformatics applications in public health. I am particularly passionate about developing computational solutions that bridge the gap between genomic data and actionable insights for clinical and public health applications.</p>
+                
+                <p>Through my work as a bioinformatics analyst and research collaborator, I've provided end-to-end genomic analysis for graduate researchers, translating raw sequencing data into biologically meaningful insights. I also mentor undergraduate students, guiding them through in silico bioinformatics studies and fostering the next generation of computational biologists.</p>
+                
+                <h3>Education</h3>
+                <p><strong>Kwame Nkrumah University of Science and Technology (KNUST), Ghana</strong><br>
+                BSc Biochemistry (Second Class Upper Division) — 2024<br>
+                Relevant Courses: Molecular Biology, Microbiology, Medical & Food Biochemistry, Bioinformatics, Pharmacology, Data Analysis & Statistics</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="research">
+        <div class="container">
+            <h2 class="section-title">Research Interests</h2>
+            <div class="research-interests">
+                <div class="interest-item">
+                    <h3>Genomic Epidemiology of Pathogens</h3>
+                    <p>Studying pathogen transmission, evolution, and spread using genomic data and computational approaches to inform public health interventions.</p>
+                </div>
+                <div class="interest-item">
+                    <h3>Antimicrobial Resistance Mechanisms</h3>
+                    <p>Investigating the genetic basis and spread of antibiotic resistance in bacterial pathogens to combat the growing threat of drug-resistant infections.</p>
+                </div>
+                <div class="interest-item">
+                    <h3>Molecular Oncology & Biomarker Discovery</h3>
+                    <p>Applying genomic and bioinformatics approaches to identify cancer biomarkers and understand molecular mechanisms of oncogenesis.</p>
+                </div>
+                <div class="interest-item">
+                    <h3>Viral Genomics</h3>
+                    <p>Analyzing viral evolution, transmission patterns, and host-pathogen interactions through genomic sequencing and computational analysis.</p>
+                </div>
+                <div class="interest-item">
+                    <h3>Microbiome Studies</h3>
+                    <p>Exploring plant, soil, and human microbiomes using metagenomic approaches to understand microbial communities and their functions.</p>
+                </div>
+                <div class="interest-item">
+                    <h3>Multi-Omics Integration</h3>
+                    <p>Developing computational frameworks to integrate genomic, transcriptomic, and proteomic data for comprehensive biological insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="publications">
+        <div class="container">
+            <h2 class="section-title">Publications & Projects</h2>
+            <div class="card">
+                <div class="publication">
+                    <div class="publication-title">StaphScope: A species-optimized computational pipeline for rapid and accessible Staphylococcus aureus genotyping and surveillance</div>
+                    <div class="publication-authors">Beckley Brown</div>
+                    <div class="publication-details">2025 | GitHub: <a href="https://github.com/bbeckley-hub/staphscope-typing-tool">https://github.com/bbeckley-hub/staphscope-typing-tool</a></div>
+                    <p>Designed and developed a specialized, automated bioinformatics pipeline that integrates six essential S. aureus genotyping methods (MLST, spa typing, SCCmec analysis, antimicrobial resistance profiling, virulence factor screening, and plasmid detection) into a single, efficient workflow. StaphScope directly addresses the bioinformatics barrier in genomic surveillance by providing a user-friendly, locally executable tool that generates comprehensive, publication-ready reports.</p>
+                    <p><strong>Technical Implementation:</strong> Engineered in Python with a modular architecture for parallel execution, dynamically optimizing resource usage (CPU/RAM) via the psutil library. Distributed as a single-install Conda package to eliminate dependency conflicts and ensure reproducibility.</p>
+                    <p><strong>Validation & Impact:</strong> Achieved 100% concordance with established profiles of international reference strains (N315, USA300, MRSA252). Successfully characterized 17 clinical isolates, identifying key resistance mechanisms (e.g., mecA in 94% of MRSA) and virulence factors (e.g., PVL toxin). Benchmarked to be 1.7-4.3x faster than generalist platforms (Bactopia, Nullarbor).</p>
+                    <span class="publication-status">Manuscript under review at BMC Genomics</span>
+                </div>
+                
+                <div class="publication">
+                    <div class="publication-title">EcoliTyper: E. coli genotyping Tool</div>
+                    <div class="publication-authors">Beckley Brown</div>
+                    <div class="publication-details">2024-Present | GitHub: <a href="https://github.com/bbeckley-hub/ecoliTyper">https://github.com/bbeckley-hub/ecoliTyper</a></div>
+                    <p>Created computational pipeline for E. coli pathotype classification from genomic data with integrated multiple typing schemes into unified workflow.</p>
+                    <span class="publication-status">Manuscript under review in BMC Bioinformatics</span>
+                </div>
+                
+                <div class="publication">
+                    <div class="publication-title">Genomic Analysis of Fluoroquinolone-resistant Salmonella Isolates from Poultry Products in Ghana</div>
+                    <div class="publication-authors">Research Collaboration</div>
+                    <p><strong>Aim:</strong> To determine the prevalence, serotype distribution, and genetic mechanisms of fluoroquinolone resistance in Salmonella from retail chicken meat and eggs.</p>
+                    <p><strong>Contribution:</strong> Executed the computational pipeline to identify resistance genes (e.g., qnr variants, mutations in gyrA/parC), determine serotypes in silico, and construct phylogenies to understand isolate relatedness.</p>
+                </div>
+                
+                <div class="publication">
+                    <div class="publication-title">Molecular Characterization of Antibiotic Resistance in Neisseria gonorrhoeae</div>
+                    <div class="publication-authors">Undergraduate Research Project | Supervisor: Dr. Salifu Pandem</div>
+                    <p>Conducted comprehensive bioinformatics analysis of resistance genes using sequencing data. Employed tools such as BWA, Prokka, Samtools, Roary, IQ-TREE, and ABRicate. Constructed phylogenetic trees and investigated the presence of resistance markers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Bioinformatics Analyst & Research Collaborator</h3>
+                        <p>2024-Present</p>
+                        <p>Provided end-to-end genomic analysis for graduate (PhD/Masters) researchers, translating raw sequencing data into biologically meaningful insights for their theses and publications. Managed the full analytical workflow: quality control of raw reads, de novo genome assembly, annotation, phylogenetic analysis, antimicrobial resistance/virulence gene profiling, and variant calling.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Undergraduate Research Mentor</h3>
+                        <p>2024-Present</p>
+                        <p>Supervised and mentored a cohort of 13 undergraduate students in the Department of Biochemistry and Biotechnology, KNUST, for their final-year research projects. Guided students through the design and execution of in silico bioinformatics studies, teaching core competencies in Linux command-line, genomic data retrieval, and the use of standard bioinformatics tools for sequence analysis.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>National Service - Research & Lab Assistant</h3>
+                        <p>University of Ghana Medical School | 2024-Present</p>
+                        <p>Assisting in cancer and nutrition-related research in the Department of Medical Biochemistry. Supporting medical student labs and maintaining research documentation. Conducting basic lab experiments, sample preparation, and preliminary data analysis.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Research Assistant (Volunteer)</h3>
+                        <p>GHANCO Research Group, Golokwati | Dec 2024</p>
+                        <p>Participated in field data collection and basic diagnostic testing. Supported data entry, health surveys, and community health assessments.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Research & Quality Control Intern</h3>
+                        <p>Piccadilly Biscuits, Accra | Oct-Dec 2023</p>
+                        <p>Applied biochemical techniques to food production and stability analysis.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Lab Intern</h3>
+                        <p>Amasaman Hospital, Accra | Sept-Oct 2022</p>
+                        <p>Gained exposure to diagnostic testing, sample handling, and biosafety.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>STEM Educator</h3>
+                        <p>Universal Scholars Academy, Accra | Aug 2019-Jan 2023</p>
+                        <p>Taught science and mathematics; honed communication and mentoring skills.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Bioinformatics Tools & Databases</h3>
+                    <ul class="skill-list">
+                        <li>BWA, Samtools, Prokka</li>
+                        <li>IQ-TREE, Roary, VCFtools</li>
+                        <li>ABRicate, IGV, CARD</li>
+                        <li>ResFinder, VFDB, NCBI</li>
+                        <li>BLAST, shovill, Uniprot</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Programming & Data Analysis</h3>
+                    <ul class="skill-list">
+                        <li>Python, R, Linux/bash</li>
+                        <li>GitHub (bbeckley-hub)</li>
+                        <li>Sequence alignment</li>
+                        <li>Genome annotation</li>
+                        <li>Variant calling</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Genomic Analysis</h3>
+                    <ul class="skill-list">
+                        <li>Phylogenetic tree construction</li>
+                        <li>Resistance gene profiling</li>
+                        <li>Bacterial typing</li>
+                        <li>Genome assembly</li>
+                        <li>Variant analysis</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Laboratory Techniques</h3>
+                    <ul class="skill-list">
+                        <li>DNA extraction</li>
+                        <li>PCR</li>
+                        <li>Reagent preparation</li>
+                        <li>Microbial culture</li>
+                        <li>Quality control</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2 class="section-title" style="margin-top: 3rem;">Professional Development</h2>
+            <div class="card">
+                <h3>NIH-Supported Microbial Bioinformatics Workshop</h3>
+                <p><strong>Noguchi Memorial Institute for Medical Research (UG) & RECABAW</strong><br>
+                August 4–8, 2025 | Accra, Ghana</p>
+                <p>Intensive training in microbial genomics and bioinformatics pipelines for pathogen analysis. Covered microbial genome assembly, annotation, variant calling, phylogenetic analysis, and antimicrobial resistance gene detection. Applied knowledge to hands-on exercises using real-world datasets; awarded a certificate of completion. Working on High Performance Computing (HPC) servers for complex analysis.</p>
+            </div>
+            
+            <h2 class="section-title" style="margin-top: 3rem;">Awards & Honors</h2>
+            <div class="card">
+                <ul class="skill-list">
+                    <li>Second Class Upper Honors in BSc Biochemistry</li>
+                    <li>Certificate of Completion — NIH-Supported Microbial Bioinformatics Workshop (NMIMR/UG & RECABAW), 2025</li>
+                    <li>Distinction Graduate, SHS (Top 30 out of 1,000+ students)</li>
+                    <li>Awarded for Outstanding Essay on Sanitation & Hygiene (2013)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section id="leadership">
+        <div class="container">
+            <h2 class="section-title">Leadership & Memberships</h2>
+            <div class="membership-grid">
+                <div class="membership-item">
+                    <i class="fas fa-users"></i>
+                    <h3>Assistant Sports Captain</h3>
+                    <p>Mawuli Senior High School</p>
+                </div>
+                <div class="membership-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Mentor & Tutor</h3>
+                    <p>Mawuli SHS Science Support</p>
+                </div>
+                <div class="membership-item">
+                    <i class="fas fa-dumbbell"></i>
+                    <h3>Sports Club Member</h3>
+                    <p>KNUST Biochemistry Department (2020–2024)</p>
+                </div>
+                <div class="membership-item">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Member</h3>
+                    <p>Ghana Computational Biosciences Network (GCBN)</p>
+                </div>
+                <div class="membership-item">
+                    <i class="fas fa-flask"></i>
+                    <h3>Member</h3>
+                    <p>GHANCO Research Group</p>
+                </div>
+                <div class="membership-item">
+                    <i class="fas fa-dna"></i>
+                    <h3>Member</h3>
+                    <p>FGHABSA</p>
+                </div>
+                <div class="membership-item">
+                    <i class="fas fa-microscope"></i>
+                    <h3>Member</h3>
+                    <p>RECABAW</p>
+                </div>
+            </div>
+            
+            <h2 class="section-title" style="margin-top: 4rem;">Extracurricular Activities & Interests</h2>
+            <div class="interests-container">
+                <div class="interest-card">
+                    <i class="fas fa-futbol"></i>
+                    <h3>Football (Soccer)</h3>
+                    <p>Team participation in local matches; developed teamwork and strategic skills.</p>
+                </div>
+                <div class="interest-card">
+                    <i class="fas fa-running"></i>
+                    <h3>Long-distance Running</h3>
+                    <p>Built endurance, discipline, and resilience through regular training.</p>
+                </div>
+                <div class="interest-card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Video Games</h3>
+                    <p>FC 2025, NBA 2K - Engaged in strategy and problem-solving games to sharpen analytical thinking.</p>
+                </div>
+                <div class="interest-card">
+                    <i class="fas fa-music"></i>
+                    <h3>Music Appreciation</h3>
+                    <p>Active listener with broad interest in diverse genres, enhancing creativity and cultural awareness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <p>Feel free to reach out for collaborations or inquiries</p>
+            <div class="contact-info">
+                <a href="mailto:brownbeckley94@gmail.com"><i class="fas fa-envelope"></i> brownbeckley94@gmail.com</a>
+                <a href="tel:+233532694328"><i class="fas fa-phone"></i> +233 532 694 328</a>
+                <a href="tel:+233508820617"><i class="fas fa-phone"></i> +233 508 820 617</a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/brown-beckley-190315319/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/bbeckley-hub"><i class="fab fa-github"></i></a>
+            </div>
+            <p>&copy; 2025 Beckley Brown. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
